@@ -13,7 +13,7 @@ import java.io.IOException;
 public class ImageProcessor {
     public void processImage(BufferedImage image, ResizerApp resizerApp) throws BadAttributesException, IOException {
         if (resizerApp.getOutputFile() == null || resizerApp.getOutputFile().isDirectory() ||
-                !resizerApp.getOutputFile().getParentFile().exists()) {
+                (resizerApp.getOutputFile().getParentFile() != null && !resizerApp.getOutputFile().getParentFile().exists())) {
             throw new BadAttributesException("Please check params!");
         }
         if (!(resizerApp.getResizeWidth() == null && resizerApp.getResizeHeight() == null)) {
